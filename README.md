@@ -1,23 +1,101 @@
-# ✨ Welcome to Your Spark Template!
-You've just launched your brand-new Spark Template Codespace — everything’s fired up and ready for you to explore, build, and create with Spark!
+# URL Query Stripper
 
-This template is your blank canvas. It comes with a minimal setup to help you get started quickly with Spark development.
+A simple, focused utility that strips query strings from URLs and opens the cleaned URL in a new tab.
 
-🚀 What's Inside?
-- A clean, minimal Spark environment
-- Pre-configured for local development
-- Ready to scale with your ideas
-  
-🧠 What Can You Do?
+## Features
 
-Right now, this is just a starting point — the perfect place to begin building and testing your Spark applications.
+- **URL Input Field**: Paste or type URLs with real-time validation
+- **Strip & Navigate**: Remove query parameters and open in a new tab
+- **All-in-One**: Read from clipboard, validate, strip, and navigate in one click
+- **URL Preview**: See the cleaned URL before navigation
+- **Keyboard Support**: Press Enter to quickly strip and open
 
-🧹 Just Exploring?
-No problem! If you were just checking things out and don’t need to keep this code:
+## Usage
 
-- Simply delete your Spark.
-- Everything will be cleaned up — no traces left behind.
+1. **Manual Method**:
+   - Paste a URL into the text field
+   - Click "Strip & Open" or press Enter
+   - The cleaned URL opens in a new tab
 
-📄 License For Spark Template Resources 
+2. **All-in-One Method**:
+   - Copy a URL to your clipboard
+   - Click "All-in-One"
+   - URL is automatically pasted, stripped, and opened
 
-The Spark Template files and resources from GitHub are licensed under the terms of the MIT license, Copyright GitHub, Inc.
+## Deployment to GitHub Pages
+
+### Prerequisites
+- A GitHub account
+- Node.js and npm installed locally
+
+### Setup Instructions
+
+1. **Create a new GitHub repository** for this project
+
+2. **Update the base path** in `vite.config.ts`:
+   ```typescript
+   base: process.env.NODE_ENV === 'production' ? '/your-repo-name/' : '/',
+   ```
+   Replace `your-repo-name` with your actual repository name.
+
+3. **Push your code to GitHub**:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin https://github.com/your-username/your-repo-name.git
+   git push -u origin main
+   ```
+
+4. **Enable GitHub Pages**:
+   - Go to your repository on GitHub
+   - Navigate to **Settings** → **Pages**
+   - Under "Build and deployment":
+     - **Source**: Select "GitHub Actions"
+   - The GitHub Actions workflow will automatically deploy your app
+
+5. **Access your app**:
+   - After the deployment completes (check the "Actions" tab)
+   - Your app will be available at: `https://your-username.github.io/your-repo-name/`
+
+### Manual Deployment
+
+If you prefer to deploy manually:
+
+```bash
+# Build the project
+npm run build
+
+# The built files will be in the 'dist' directory
+# You can deploy this directory to any static hosting service
+```
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## Tech Stack
+
+- **React** + **TypeScript**
+- **Vite** for build tooling
+- **Tailwind CSS** for styling
+- **shadcn/ui** for components
+- **Phosphor Icons** for iconography
+- **Sonner** for toast notifications
+
+## License
+
+MIT
