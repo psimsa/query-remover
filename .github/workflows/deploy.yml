@@ -34,16 +34,22 @@ jobs:
         run: npm run build
 
       - name: Setup Pages
+        id: setup_pages
         if: github.ref == 'refs/heads/main'
         continue-on-error: true
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
+        id: upload_artifact
         if: github.ref == 'refs/heads/main'
         continue-on-error: true
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
+
+      - name: Warn when Pages preparation fails
+        if: github.ref == 'refs/heads/main' && (steps.setup_pages.outcome == 'failure' || steps.upload_artifact.outcome == 'failure')
+        run: echo "::warning::GitHub Pages is misconfigured. Build succeeded, but Pages setup/upload failed."
 
   deploy:
     if: github.ref == 'refs/heads/main'
@@ -57,3 +63,7 @@ jobs:
         id: deployment
         continue-on-error: true
         uses: actions/deploy-pages@v4
+
+      - name: Warn when deployment fails
+        if: steps.deployment.outcome == 'failure'
+        run: echo "::warning::GitHub Pages deployment failed due to configuration issues."
