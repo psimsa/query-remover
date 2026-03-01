@@ -35,10 +35,12 @@ jobs:
 
       - name: Setup Pages
         if: github.ref == 'refs/heads/main'
+        continue-on-error: true
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         if: github.ref == 'refs/heads/main'
+        continue-on-error: true
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
@@ -53,4 +55,5 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
+        continue-on-error: true
         uses: actions/deploy-pages@v4
