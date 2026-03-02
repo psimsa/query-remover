@@ -20,8 +20,11 @@ function App() {
     }
 
     try {
-      const matchedUrl = trimmedInput.match(/https?:\/\/\S+/i)?.[0] ?? trimmedInput
-      const urlObj = new URL(matchedUrl)
+      const matchedUrl = trimmedInput.match(/https?:\/\/\S+/i)?.[0]
+      const candidateUrl = matchedUrl
+        ? matchedUrl.replace(/[),.!?;:'"]+$/, '')
+        : trimmedInput
+      const urlObj = new URL(candidateUrl)
       const hasQuery = urlObj.search !== ''
       const stripped = `${urlObj.protocol}//${urlObj.host}${urlObj.pathname}${urlObj.hash}`
       return { isValid: true, stripped, hasQuery }
