@@ -14,12 +14,17 @@ function App() {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const validateAndStripUrl = (urlString: string): { isValid: boolean; stripped: string; hasQuery: boolean } => {
-    if (!urlString.trim()) {
+    const trimmedInput = urlString.trim()
+    if (!trimmedInput) {
       return { isValid: false, stripped: '', hasQuery: false }
     }
 
     try {
-      const urlObj = new URL(urlString)
+      const matchedUrl = trimmedInput.match(/https?:\/\/\S+/i)?.[0]
+      const candidateUrl = matchedUrl
+        ? matchedUrl.replace(/[),.!?;:'"]+$/, '')
+        : trimmedInput
+      const urlObj = new URL(candidateUrl)
       const hasQuery = urlObj.search !== ''
       const stripped = `${urlObj.protocol}//${urlObj.host}${urlObj.pathname}${urlObj.hash}`
       return { isValid: true, stripped, hasQuery }

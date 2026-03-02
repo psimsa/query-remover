@@ -85,6 +85,9 @@ npm run build
 
 # Preview production build
 npm run preview
+
+# Run Playwright e2e tests
+npm run test:e2e
 ```
 
 ## Tech Stack
